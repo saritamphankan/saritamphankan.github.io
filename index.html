@@ -1,246 +1,368 @@
-<!DOCTYPE html>
-<html lang="th">
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sanifu — ผลงาน | วิดีโอ · กราฟิก · ข้อมูล</title>
-<meta name="description" content="พอร์ตโฟลิโอ Sanifu: คลิปรีวิวลูกค้า ซับไทยฝังคลิป Motion Graphics อินโฟกราฟิก และ Company Profile — จ้างงานผ่าน Fastwork">
-<meta property="og:title" content="Sanifu — ผลงาน">
-<meta property="og:description" content="วิดีโอ · กราฟิก · ข้อมูล — ดูตัวอย่างงานจริงทุกบริการ">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sanifu Studio · Explainer videos and app ads</title>
+<meta name="description" content="Explainer videos, app ads and short-form edits for SaaS, fintech and product brands. Script and storyboard approved before any animation starts.">
+<meta property="og:title" content="Sanifu Studio · Explainer videos and app ads">
+<meta property="og:description" content="Script, storyboard, animation and voice-over for SaaS, fintech and product brands.">
+<meta property="og:image" content="https://saritamphankan.github.io/assets/p/stopwell.jpg">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Prompt:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0e1116; --panel:#161b23; --panel2:#1d242f; --line:#2a3342;
-    --text:#e8edf4; --muted:#9aa7b8; --accent:#3fb6a8; --accent2:#f5b942;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans Thai',system-ui,sans-serif;line-height:1.65}
-  h1,h2,h3,.logo{font-family:'Prompt','IBM Plex Sans Thai',sans-serif}
-  a{color:inherit;text-decoration:none}
-  img,video{max-width:100%;display:block}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+:root{--bg:#f6f9fd;--card:#fff;--line:#d8e5f2;--ink:#14213d;--muted:#5b6b85;--accent:#e63956;--blue:#2f80d6;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 "IBM Plex Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,video{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-  header{position:sticky;top:0;z-index:50;background:rgba(14,17,22,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;gap:18px;padding:14px 0;flex-wrap:wrap}
-  .logo{font-weight:800;font-size:1.25rem;letter-spacing:.5px}
-  .logo span{color:var(--accent)}
-  .nav .links{display:flex;gap:14px;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
-  .nav .links a:hover{color:var(--text)}
-  .nav .cta{margin-left:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(246,249,253,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+header img{height:26px;width:auto}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;text-decoration:none;font-weight:500;font-size:15px;padding:10px 18px;border-radius:999px;transition:background .2s}
+.btn:hover{background:var(--accent)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--ink);background:#fff}
 
-  .btn{display:inline-block;padding:10px 20px;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s}
-  .btn-primary{background:var(--accent);color:#07211e}
-  .btn-primary:hover{filter:brightness(1.1)}
-  .btn-ghost{border:1px solid var(--line);color:var(--text)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:56px}
+h1{text-wrap:balance;font-size:clamp(34px,4.6vw,56px);line-height:1.08;font-weight:600;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font-size:19px;color:var(--muted);margin:20px 0 28px;max-width:34em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:28px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.facts b{display:block;color:var(--ink);font-size:15px;font-weight:600}
 
-  .hero{padding:72px 0 56px;text-align:left}
-  .hero h1{font-size:clamp(1.7rem,4.6vw,2.7rem);font-weight:800;line-height:1.25}
-  .hero h1 em{font-style:normal;color:var(--accent)}
-  .hero p{margin-top:16px;max-width:640px;color:var(--muted);font-size:1.02rem}
-  .hero .actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
-  .chips{margin-top:30px;display:flex;gap:8px;flex-wrap:wrap}
-  .chip{font-size:.8rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:5px 13px}
+.phones{position:relative;height:540px}
+.phone{position:absolute;width:250px;aspect-ratio:9/16;border-radius:30px;overflow:hidden;background:#0d1424;border:6px solid #0d1424;box-shadow:0 30px 60px -20px rgba(20,33,61,.45)}
+.phone video,.phone img{width:100%;height:100%;object-fit:cover}
+.phone.a{left:6%;top:30px;transform:rotate(-4deg)}
+.phone.b{right:6%;top:0;transform:rotate(3deg)}
+.phone .lbl{white-space:nowrap;position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.92);color:var(--ink);font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px}
 
-  section{padding:56px 0;border-top:1px solid var(--line)}
-  .sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
-  .sec-head .no{font-family:'Prompt';color:var(--accent2);font-weight:700;font-size:.95rem}
-  h2{font-size:clamp(1.25rem,3vw,1.7rem);font-weight:700}
-  .sec-desc{color:var(--muted);max-width:680px;margin-bottom:26px;font-size:.95rem}
-  .sec-cta{margin-top:26px}
+section{padding:56px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+h2{font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-.01em}
+.sub{color:var(--muted);margin-top:6px}
 
-  .vid-row{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
-  .phone{flex:0 0 300px;max-width:300px;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 18px 50px rgba(0,0,0,.45)}
-  .phone video{aspect-ratio:9/16;object-fit:cover;width:100%}
-  .vid-notes{flex:1;min-width:260px}
-  .vid-notes ul{list-style:none;display:grid;gap:12px}
-  .vid-notes li{padding-left:26px;position:relative;color:var(--muted);font-size:.95rem}
-  .vid-notes li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
-  .vid-notes li strong{color:var(--text);font-weight:600}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:14px;background:#fff;border:1px solid var(--line);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
 
-  .grid{display:grid;gap:14px}
-  .grid.cols3{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-  .grid.cols2{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.15s}
-  .card:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .card img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
-  .card.wide img{aspect-ratio:16/10}
-  .card .cap{padding:10px 14px;font-size:.84rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.card{grid-column:span 4;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.card.wide{grid-column:span 8}
+.card.half{grid-column:span 6}
+.card.full{grid-column:span 12}
+.card.hide{display:none}
+.media{position:relative;background:#0d1424;cursor:pointer;overflow:hidden}
+.media.v916{aspect-ratio:4/5}
+.media.v169{aspect-ratio:16/10}
+.card.wide .media.v169{aspect-ratio:16/9.6}
+.media img,.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media.contain video{object-fit:contain}
+.media .play{position:absolute;right:12px;bottom:12px;z-index:2;background:rgba(255,255,255,.94);color:var(--ink);font-size:13px;font-weight:500;padding:6px 12px 6px 10px;border-radius:999px;display:flex;align-items:center;gap:6px;transition:transform .2s}
+.media:hover .play{transform:translateY(-2px)}
+.play svg{width:12px;height:12px}
+.body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{font-size:13px;color:var(--accent);font-weight:500}
+.card h3{font-size:19px;line-height:1.3;font-weight:600}
+.card p{color:var(--muted);font-size:15px}
+.spec{margin-top:auto;padding-top:10px;font-size:13px;color:var(--muted);border-top:1px dashed var(--line)}
+.spec a{color:var(--blue)}
 
-  .mood{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-  .mood a{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;transition:.15s;display:block}
-  .mood a:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .sw{display:flex;height:44px;border-radius:8px;overflow:hidden;margin-bottom:12px}
-  .sw i{flex:1}
-  .mood h3{font-size:.95rem;font-weight:600}
-  .mood p{font-size:.78rem;color:var(--muted);margin-top:4px}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px;background:#0d1424}
+.thumbs img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;cursor:zoom-in}
+.mock{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
 
-  .note{margin-top:22px;font-size:.8rem;color:var(--muted);border-left:3px solid var(--line);padding-left:12px}
+.group+.group{padding-top:24px}
+.other-head{padding-top:72px;border-top:1px solid var(--line);margin-top:24px}
+.other-head h2{font-size:34px}
+.gh{font-size:22px;font-weight:600}
+#stories{padding-top:28px}
+.card.row{grid-column:span 12;flex-direction:row}
+.card.row .media{flex:0 0 62%;aspect-ratio:16/9}
+.card.row .body{justify-content:center;padding:28px}
+.angle{font-size:14px!important;color:var(--ink)!important;background:#f1f6fc;border-left:3px solid var(--accent);padding:8px 10px;border-radius:0 6px 6px 0}
+.angle b{font-weight:600}
+.card .mock{grid-template-columns:1fr 1fr;padding:8px;gap:8px;background:#eef3f9;aspect-ratio:4/5;grid-template-rows:1.15fr 1fr}
+.card .mock img:first-child{grid-column:span 2}
 
-  footer{border-top:1px solid var(--line);padding:48px 0 60px;text-align:center}
-  footer .logo{font-size:1.4rem}
-  footer p{color:var(--muted);margin-top:10px;font-size:.9rem}
-  footer .actions{margin-top:22px}
+.mock img{border-radius:10px;border:1px solid var(--line);width:100%;height:100%;object-fit:cover;cursor:zoom-in;background:#fff}
+
+.incl{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.incl div{padding:22px 24px 22px 0;border-bottom:1px solid var(--line)}
+.incl b{display:block;font-size:17px;font-weight:600;margin-bottom:4px}
+.incl span{color:var(--muted);font-size:15px}
+
+.how{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.how ol{list-style:none;counter-reset:s}
+.how li{counter-increment:s;padding:14px 0 14px 44px;position:relative;border-bottom:1px solid var(--line)}
+.how li::before{content:counter(s);position:absolute;left:0;top:14px;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:13px;color:var(--muted)}
+.how li b{font-weight:600}
+.doc{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;text-decoration:none}
+.doc:hover{border-color:var(--ink)}
+.doc img{border-radius:8px;border:1px solid var(--line);margin-bottom:14px}
+.doc b{display:block;font-weight:600}
+.doc span{color:var(--muted);font-size:14px}
+
+.end{background:var(--ink);color:#fff;border-radius:22px;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.end h2{color:#fff;max-width:20em}
+.end p{color:#b8c4d9;margin-top:8px}
+.end .btn{background:#fff;color:var(--ink)}
+.end .btn:hover{background:var(--accent);color:#fff}
+footer{padding:32px 0 48px;font-size:13px;color:var(--muted)}
+footer p+p{margin-top:6px}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(96vw,1100px);max-height:92vh;margin:auto}
+dialog::backdrop{background:rgba(10,16,30,.86)}
+dialog video,dialog img{max-width:min(96vw,1100px);max-height:86vh;border-radius:10px;background:#000;margin:0 auto}
+dialog .x{position:fixed;top:14px;right:18px;font:500 15px "IBM Plex Sans",sans-serif;background:#fff;color:var(--ink);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
+dialog .cap{color:#dfe6f2;font-size:14px;text-align:center;margin-top:10px}
+
+.rise{animation:rise .8s cubic-bezier(.2,.7,.2,1) var(--d,0s) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.phone.a.rise{animation-name:riseA}.phone.b.rise{animation-name:riseB}
+@keyframes riseA{from{opacity:0;transform:translateY(40px) rotate(-9deg)}to{opacity:1;transform:rotate(-4deg)}}
+@keyframes riseB{from{opacity:0;transform:translateY(60px) rotate(8deg)}to{opacity:1;transform:rotate(3deg)}}
+@media (prefers-reduced-motion:reduce){.rise{animation:none}}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:28px;padding-top:36px;padding-bottom:24px}
+  .phones{height:380px}
+  .phone{width:180px;border-radius:22px;border-width:5px}
+  .phone.a{left:4%}.phone.b{right:4%}
+  .card,.card.wide,.card.half{grid-column:span 6}
+  .card.row{flex-direction:column}.card.row .media{flex:none}
+  .card.full{grid-column:span 12}
+  .incl{grid-template-columns:1fr 1fr}
+  .how{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  header .btn{padding:8px 14px;font-size:14px}
+  .lead{font-size:17px}
+  .hero>div:first-child{display:contents}
+  .hero h1{order:1}.hero .lead{order:2}.hero .ctas{order:3}.hero .phones{order:4}.hero .facts{order:5}
+  .phones{height:250px}
+  .phone{width:118px;border-radius:18px}
+  .phone .lbl{font-size:10px;padding:3px 7px;left:6px;bottom:6px}
+  .lead{font-size:16px;margin:14px 0 18px}
+  .phone.a{left:0}.phone.b{right:0}
+  .card,.card.wide,.card.half,.card.full{grid-column:span 12}
+  .card.row{flex-direction:column}.card.row .media{flex:none}
+  .facts{display:none}
+  .hero{gap:18px;padding-top:24px}
+  .mock{grid-template-columns:1fr 1fr}.mock img:first-child{grid-column:span 2}
+  .incl{grid-template-columns:1fr}
+  .thumbs{grid-template-columns:1fr 1fr}
+  .facts{grid-template-columns:1fr 1fr;gap:16px 24px}
+  .incl div{padding-right:0}
+  .end{padding:32px 24px}
+  section{padding:40px 0}
+}
 </style>
 </head>
 <body>
+<header><div class="wrap">
+  <a href="#top" aria-label="Sanifu Studio"><img src="assets/logo.svg" alt="Sanifu Studio" width="94" height="26"></a>
+  <a class="btn" href="https://www.upwork.com/freelancers/~012332817fe4c80f80" target="_blank" rel="noopener">Hire on Upwork</a>
+</div></header>
 
-<header>
-  <div class="wrap nav">
-    <div class="logo">SANI<span>FU</span></div>
-    <nav class="links">
-      <a href="#reviewclip">คลิปรีวิว</a>
-      <a href="#subtitle">ซับไทย</a>
-      <a href="#motion">Motion</a>
-      <a href="#infographic">อินโฟกราฟิก</a>
-      <a href="#presentation">Presentation</a>
-      <a href="#moodboard">Mood Board</a>
-    </nav>
-    <div class="cta"><a class="btn btn-primary" href="https://fastwork.co/user/709jqv5b" target="_blank" rel="noopener">จ้างผ่าน Fastwork</a></div>
-  </div>
-</header>
-
-<main class="wrap">
-
-  <div class="hero">
-    <h1>เปลี่ยนข้อมูลและเรื่องราวของธุรกิจคุณ<br>ให้เป็น<em>สื่อที่คนหยุดดู</em></h1>
-    <p>Sanifu ผลิตวิดีโอสั้น ซับไตเติล motion graphics อินโฟกราฟิก และเอกสารธุรกิจ
-       — เน้นงานที่มีข้อมูลแน่นแต่ต้องอ่านรู้เรื่องใน 10 วินาที ส่งเร็ว ตรวจทานทุกชิ้นก่อนส่งมอบ</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="https://fastwork.co/user/709jqv5b" target="_blank" rel="noopener">ดูบริการทั้งหมดบน Fastwork</a>
-      <a class="btn btn-ghost" href="#reviewclip">ดูตัวอย่างผลงาน ↓</a>
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1 class="rise" style="--d:.05s">Explainer videos and app ads for SaaS and fintech products.</h1>
+    <p class="lead rise" style="--d:.2s">Built around your real app screens, so viewers understand the product before they install it. I handle script, storyboard, animation and voice-over, and you approve the script and storyboard first.</p>
+    <div class="ctas rise" style="--d:.32s">
+      <a class="btn" href="#saas">See the work</a>
+      <a class="btn ghost" href="docs/INVORA_script_storyboard.pdf" target="_blank" rel="noopener">Sample script &amp; storyboard (PDF)</a>
     </div>
-    <div class="chips">
-      <span class="chip">คลิปสั้น TikTok / Reels</span>
-      <span class="chip">ซับไทยเด้งตามคำ</span>
-      <span class="chip">Motion Graphics</span>
-      <span class="chip">อินโฟกราฟิก</span>
-      <span class="chip">Company Profile / Pitch Deck</span>
+    <div class="facts rise" style="--d:.44s">
+      <div><b>9:16 · 4:5 · 1:1 · 16:9</b>every cut recomposed, not cropped</div>
+      <div><b>15 seconds to 16 minutes</b>ads, explainers, YouTube episodes</div>
+      <div><b>English voice-over</b>or music and captions</div>
     </div>
   </div>
+  <div class="phones" aria-hidden="true">
+    <div class="phone a rise" style="--d:.35s"><video data-src="assets/v/invora.mp4" poster="assets/p/invora.jpg" muted loop playsinline preload="none"></video><span class="lbl">SaaS explainer</span></div>
+    <div class="phone b rise" style="--d:.5s"><video data-src="assets/v/stopwell.mp4" poster="assets/p/stopwell.jpg" muted loop playsinline preload="none"></video><span class="lbl">Fintech app ad</span></div>
+  </div>
+</div>
 
-  <section id="reviewclip">
-    <div class="sec-head"><span class="no">01</span><h2>คลิปรีวิวลูกค้า — จากสกรีนช็อตแชท เป็นคลิปขายของ</h2></div>
-    <p class="sec-desc">ร้านค้าส่วนใหญ่มีคำชมลูกค้ากองอยู่ในแชทแต่ไม่เคยถูกใช้ต่อ
-       เรารับแปลงสกรีนช็อตรีวิวเป็นคลิปสั้นตรงจังหวะเพลง พร้อมเบลอชื่อ-หน้าลูกค้าให้ถ้ายังไม่ได้รับอนุญาต</p>
-    <div class="vid-row">
-      <div class="phone"><video src="assets/reviewclip_demo.mp4" controls preload="metadata" playsinline></video></div>
-      <div class="vid-notes">
-        <ul>
-          <li><strong>คัตตรงจังหวะเพลง</strong> — เปลี่ยนภาพลงบีต ดูมีของแม้วัตถุดิบเป็นภาพนิ่ง</li>
-          <li><strong>ข้อความเด็ดถูกดึงขึ้นตัวใหญ่</strong> — คนดูจับใจความได้โดยไม่ต้องเปิดเสียง</li>
-          <li><strong>คุมโซนปลอดภัย TikTok</strong> — ไม่มีข้อความโดน UI บัง</li>
-          <li><strong>จบด้วยการ์ดชื่อร้าน</strong> — พร้อมใช้ยิงแอดต่อได้ทันที</li>
-        </ul>
-        <div class="sec-cta"><a class="btn btn-ghost" href="https://fastwork.co/user/709jqv5b/video-editing-64517126" target="_blank" rel="noopener">ดูแพ็กเกจงานคลิปรีวิว →</a></div>
+<section id="saas" class="group"><div class="wrap">
+  <div class="sec-head"><div><h2>SaaS &amp; fintech</h2><p class="sub">Concepts for fictional brands, made to show the work. Tap any piece to watch with sound.</p></div></div>
+  <div class="grid">
+    <article class="card  rise" style="--d:0.57s">
+      <div class="media v916" data-video="assets/v/stopwell.mp4" data-cap="stopwell · fintech app ad · 20 s"><img src="assets/p/stopwell.jpg" alt="Stopwell app ad frame showing a subscription card being cancelled" loading="lazy"><video data-src="assets/v/stopwell.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Paid social ad · fintech app · concept</span><h3>stopwell: “4 subscriptions I stopped paying for”</h3><p>Every app screen is built and animated in code, so numbers and interface stay sharp at any size.</p><p class="angle"><b>Angle:</b> open on the money you get back, then show the app finding it in four taps.</p><div class="spec">4:5, 1:1, 16:9 and 15 s cuts included</div></div>
+    </article>
+    <article class="card  rise" style="--d:0.64s">
+      <div class="media v916" data-video="assets/v/invora.mp4" data-cap="INVORA · billing app explainer · 30 s"><img src="assets/p/invora.jpg" alt="INVORA explainer frame, shop owner at the counter" loading="lazy"><video data-src="assets/v/invora.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Product explainer · SaaS billing · concept</span><h3>INVORA: “Get paid on time”</h3><p>One character across six scenes, two real app screens and an English voice-over.</p><p class="angle"><b>Angle:</b> show the pain of chasing paper first; the product only appears once the viewer feels it.</p><div class="spec">16:9 and recomposed 9:16 · <a href="docs/INVORA_script_storyboard.pdf" target="_blank" rel="noopener">script &amp; storyboard PDF</a></div></div>
+    </article>
+    <article class="card rise" style="--d:0.71s">
+      <div class="mock">
+        <img src="assets/img/invora_laptop_desk.jpg" alt="INVORA dashboard on a MacBook on a desk" loading="lazy">
+        <img src="assets/img/invora_iphone_front.jpg" alt="INVORA invoice list on an iPhone, front view" loading="lazy">
+        <img src="assets/img/invora_iphone_angle.jpg" alt="INVORA payment received screen on a tilted iPhone" loading="lazy">
       </div>
-    </div>
-  </section>
+      <div class="body"><span class="tag">Landing page &amp; store visuals · concept</span><h3>INVORA on MacBook and iPhone</h3><p>The same app screens from the explainer, placed on devices so the video, landing page and store listing match.</p><div class="spec">Stills · 2800×2100</div></div>
+    </article>
+  </div>
+</div></section>
 
-  <section id="subtitle">
-    <div class="sec-head"><span class="no">02</span><h2>ซับไทยฝังในคลิป — เด้งตามคำ วรรณยุกต์ไม่เพี้ยน</h2></div>
-    <p class="sec-desc">ซับตามเสียงพูดแบบ word-pop เน้นคำสำคัญด้วยสี ตรวจทวนทุกบรรทัดด้วยคน
-       แถมไฟล์ .srt ให้เอาไปใช้ต่อทุกแพลตฟอร์ม</p>
-    <div class="vid-row">
-      <div class="phone"><video src="assets/subtitle_sample.mp4" controls preload="metadata" playsinline></video></div>
-      <div class="vid-notes">
-        <ul>
-          <li><strong>ซับเด้งตามคำที่กำลังพูด</strong> — ไม่ใช่ยกประโยคขึ้นทีเดียว</li>
-          <li><strong>วรรณยุกต์และสระไทยถูกตำแหน่งทุกตัว</strong> — จุดที่เครื่องมือสำเร็จรูปมักพลาด</li>
-          <li><strong>หนึ่งบรรทัดจบหนึ่งช่วงพูด</strong> — ไม่ตัดคำค้างท้ายบรรทัด</li>
-          <li><strong>ได้ทั้งคลิปฝังซับ + ไฟล์ .srt</strong></li>
-        </ul>
-        <div class="sec-cta"><a class="btn btn-ghost" href="https://fastwork.co/user/709jqv5b/subtitle-80531421" target="_blank" rel="noopener">ดูแพ็กเกจงานซับไทย →</a></div>
+<section id="how"><div class="wrap how">
+  <div>
+    <h2>How it runs</h2>
+    <ol style="margin-top:18px">
+      <li><b>Brief.</b> You send the product, the audience and where the video will run.</li>
+      <li><b>Script and storyboard.</b> You approve both, or ask for changes, before any animation.</li>
+      <li><b>First cut.</b> A full draft with sound, so you review the real pacing.</li>
+      <li><b>Final files.</b> Changes applied, then every format delivered.</li>
+    </ol>
+  </div>
+  <a class="doc" href="docs/INVORA_script_storyboard.pdf" target="_blank" rel="noopener">
+    <img src="assets/p/invora_doc.jpg" alt="First page of the INVORA script and storyboard document" loading="lazy">
+    <b>See a real approval document</b>
+    <span>INVORA script and storyboard, 3 pages, PDF</span>
+  </a>
+</div></section>
+
+<section id="includes"><div class="wrap">
+  <div class="sec-head"><div><h2>What a project includes</h2><p class="sub">The same steps for a 15-second ad or a 30-second explainer.</p></div></div>
+  <div class="incl">
+    <div><b>Script</b><span>Headline and voice-over line for every scene, timed to the second.</span></div>
+    <div><b>Storyboard</b><span>A frame for each scene, approved before animation starts.</span></div>
+    <div><b>Animation or edit</b><span>1080p, built around your real product screens or footage.</span></div>
+    <div><b>Voice-over and music</b><span>English voice-over, licensed music and sound effects.</span></div>
+    <div><b>Captions</b><span>Burned in for social, or as a separate .srt file.</span></div>
+    <div><b>Every format you need</b><span>9:16, 4:5, 1:1 and 16:9, each recomposed for its frame.</span></div>
+  </div>
+</div></section>
+
+<div class="wrap other-head"><h2>Other video work</h2><p class="sub">Long-form YouTube episodes, social edits and brand pieces. Same process, different formats.</p></div>
+<section id="stories" class="group"><div class="wrap">
+  <div class="sec-head"><div><h3 class="gh">Story-driven &amp; YouTube</h3><p class="sub">Long-form episodes that are published and watched, plus the thumbnails that sell the click.</p></div></div>
+  <div class="grid">
+    <article class="card row rise" style="--d:0.78s">
+      <div class="media v169" data-video="assets/v/salem.mp4" data-cap="Salem, 1692 · 40 s excerpt from a published 16-minute episode"><img src="assets/p/salem.jpg" alt="Evidence-board frame with LIVE, TRIAL and NOT GUILTY cards" loading="lazy"><video data-src="assets/v/salem.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Published YouTube episode · 16 min · excerpt</span><h3>Salem, 1692: how one silence became evidence</h3><p>An evidence-desk style built for one long episode: archive scans, pinned cards, maps and word-by-word captions.</p><p class="angle"><b>Angle:</b> treat the history like a case file, so every claim arrives with its document.</p><div class="spec">1080p · sources credited on screen · 40 s shown</div></div>
+    </article>
+    <article class="card half rise" style="--d:0.92s">
+      <div class="media v169" data-video="assets/v/fable.mp4" data-cap="Croesus and Solon · 35 s excerpt from a published 6½-minute episode"><img src="assets/p/fable.jpg" alt="Cut-paper diorama of an army crossing a plain below a walled city" loading="lazy"><video data-src="assets/v/fable.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Published YouTube episode · 6½ min · excerpt</span><h3>Croesus and Solon, a story from Herodotus</h3><p>A felt and cut-paper diorama world for a narrated story, with source cards on screen.</p><div class="spec">1080p · 35 s shown</div></div>
+    </article>
+    <article class="card half rise" style="--d:0.99s">
+      <div class="media v169" data-video="assets/v/papercut.mp4" data-cap="Your morning coffee was once a crime · 29 s · Archive images: Wellcome Collection (CC BY 4.0), Houghton Library, British Museum (public domain). Paper textures: ambientCG (CC0)."><img src="assets/p/papercut.jpg" alt="Paper-cut frame of a coffee cup on a newspaper" loading="lazy"><video data-src="assets/v/papercut.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Series pilot · 16:9 · 29 s</span><h3>“Your morning coffee was once a crime”</h3><p>A paper-cut history short built from archive engravings, written as episode one of a series.</p><div class="spec">Also 9:16, 4:5, 1:1 · Archive images: Wellcome Collection (CC BY 4.0), Houghton Library, British Museum (public domain). Paper textures: ambientCG (CC0).</div></div>
+    </article>
+    <article class="card full rise" style="--d:1s">
+      <div class="thumbs" style="padding:12px">
+        <img src="assets/img/thumb_noreply.jpg" alt="YouTube thumbnail reading NO REPLY with an engraved portrait and a crossed-out NOT GUILTY label" loading="lazy">
+        <img src="assets/img/thumb_27bars.jpg" alt="YouTube thumbnail reading 27 BARS with a line-engraved face" loading="lazy">
+        <img src="assets/img/thumb_printed.jpg" alt="YouTube thumbnail reading HE PRINTED THE MONEY" loading="lazy">
+        <img src="assets/img/thumb_beforeitends.jpg" alt="YouTube thumbnail reading BEFORE IT ENDS with a cut-paper king in chains" loading="lazy">
       </div>
-    </div>
-  </section>
+      <div class="body"><span class="tag">Thumbnails · published episodes</span><h3>Two to four words, one face</h3><p>Built to read at phone size in a crowded feed, with the same series look across every episode.</p><div class="spec">1280×720 · tap to enlarge</div></div>
+    </article>
+  </div>
+</div></section>
 
-  <section id="motion">
-    <div class="sec-head"><span class="no">03</span><h2>Motion Graphics — อธิบายสินค้าและข้อมูลให้จบในคลิปเดียว</h2></div>
-    <p class="sec-desc">explainer ภาพวาดเวกเตอร์เล่าเรื่อง พร้อมเสียงบรรยายและซับ
-       เหมาะกับสินค้า/บริการที่ต้องอธิบาย และเนื้อหาที่มีตัวเลขหรือขั้นตอน</p>
-    <div class="vid-row">
-      <div class="phone"><video src="assets/motion_tuen.mp4" controls preload="metadata" playsinline></video></div>
-      <div class="vid-notes">
-        <ul>
-          <li><strong>ตัวละคร/ฉากวาดใหม่ตามแบรนด์</strong> — ไม่ใช่เทมเพลตสำเร็จรูป</li>
-          <li><strong>เสียงบรรยายไทย + ซับ</strong> — ดูรู้เรื่องทั้งเปิดและปิดเสียง</li>
-          <li><strong>ได้ทั้งแนวตั้ง 9:16 และแนวนอน 16:9</strong></li>
-          <li><strong>สตอรี่บอร์ดให้ดูก่อนผลิตจริง</strong></li>
-        </ul>
-        <div class="sec-cta"><a class="btn btn-ghost" href="https://fastwork.co/user/709jqv5b/motion-graphics-13750849" target="_blank" rel="noopener">ดูแพ็กเกจงาน Motion →</a></div>
-      </div>
-    </div>
-  </section>
+<section id="short" class="group"><div class="wrap">
+  <div class="sec-head"><div><h3 class="gh">Product, brand &amp; short-form</h3><p class="sub">Reels, UGC-style edits and brand explainers for social feeds.</p></div></div>
+  <div class="grid">
+    <article class="card  rise" style="--d:1.0s">
+      <div class="media v916" data-video="assets/v/saai.mp4" data-cap="SAAI · linen product reel · 25 s"><img src="assets/p/saai.jpg" alt="SAAI linen reel frame, model walking past a sunlit wall" loading="lazy"><video data-src="assets/v/saai.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Product reel · fashion · concept</span><h3>SAAI linen</h3><p>A calm reel for a small linen label, same model and fabric kept consistent shot to shot.</p><div class="spec">Reels, TikTok, Shorts</div></div>
+    </article>
+    <article class="card  rise" style="--d:1.0s">
+      <div class="media v916" data-video="assets/v/noodle.mp4" data-cap="Noodle shop · before and after edit · 18 s"><img src="assets/p/noodle.jpg" alt="Short-form edit frame with word-by-word captions over a noodle stall" loading="lazy"><video data-src="assets/v/noodle.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">UGC edit · before and after · concept</span><h3>Noodle shop: before and after</h3><p>Same footage twice: word-by-word captions, punch-ins on the beat, a price tag and remixed audio.</p><div class="spec">18 s</div></div>
+    </article>
+    <article class="card  rise" style="--d:1.0s">
+      <div class="media v916" data-video="assets/v/evening.mp4" data-cap="Evening Room · lifestyle edit · 10 s"><img src="assets/p/evening.jpg" alt="Cocktail being garnished in low light" loading="lazy"><video data-src="assets/v/evening.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Mood edit · bar · stock footage</span><h3>Evening Room</h3><p>A slow, dark cocktail-bar cut: pacing, colour and sound design.</p><div class="spec">10 s</div></div>
+    </article>
+    <article class="card row rise" style="--d:1.0s">
+      <div class="media v169" data-video="assets/v/tuen.mp4" data-cap="TUEN Roasting · brand explainer · 28 s"><img src="assets/p/tuen.jpg" alt="TUEN Roasting explainer frame, coffee bag on a table" loading="lazy"><video data-src="assets/v/tuen.mp4" muted loop playsinline preload="none"></video><span class="play"><svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Watch</span></div>
+      <div class="body"><span class="tag">Brand explainer · coffee roaster · concept</span><h3>TUEN Roasting: from bean to door</h3><p>Six illustrated scenes that walk through sourcing, roasting and delivery, with captions and an end card.</p><div class="spec">16:9 and 9:16 · 28 s</div></div>
+    </article>
+  </div>
+</div></section>
 
-  <section id="infographic">
-    <div class="sec-head"><span class="no">04</span><h2>อินโฟกราฟิก — ข้อมูลแน่น อ่านรู้เรื่อง</h2></div>
-    <p class="sec-desc">ย่อยข้อมูลยาว ๆ ให้จบในภาพเดียว สำหรับธุรกิจ หน่วยงาน โรงเรียน และเพจ
-       ทุกแพ็กเกจแถมไฟล์เวกเตอร์แก้ไขได้</p>
-    <div class="grid cols3">
-      <a class="card" href="assets/info_01.png" target="_blank"><img src="assets/info_01.png" alt="อินโฟกราฟิกกระบวนการผลิตกาแฟ" loading="lazy"><div class="cap">กระบวนการผลิต — ร้านกาแฟคั่วเอง</div></a>
-      <a class="card" href="assets/info_02.png" target="_blank"><img src="assets/info_02.png" alt="อินโฟกราฟิกระบบนัดหมายคลินิก" loading="lazy"><div class="cap">ระบบนัดหมาย — คลินิก</div></a>
-      <a class="card" href="assets/info_03.png" target="_blank"><img src="assets/info_03.png" alt="อินโฟกราฟิกบ้านประหยัดไฟ 5 จุด" loading="lazy"><div class="cap">ประหยัดไฟในบ้าน 5 จุด</div></a>
-      <a class="card" href="assets/info_04.png" target="_blank"><img src="assets/info_04.png" alt="อินโฟกราฟิกเปรียบเทียบช่องทางขาย" loading="lazy"><div class="cap">เทียบช่องทางขาย — ธุรกิจอาหาร</div></a>
-      <a class="card" href="assets/info_05.png" target="_blank"><img src="assets/info_05.png" alt="อินโฟกราฟิกอ่านฉลากโภชนาการ" loading="lazy"><div class="cap">อ่านฉลากโภชนาการใน 4 บรรทัด</div></a>
-      <a class="card" href="assets/info_06.png" target="_blank"><img src="assets/info_06.png" alt="อินโฟกราฟิกอธิบายสินค้าผ้าฝ้าย" loading="lazy"><div class="cap">อธิบายสินค้า — แบรนด์ผ้าฝ้าย</div></a>
-    </div>
-    <div class="sec-cta"><a class="btn btn-ghost" href="https://fastwork.co/user/709jqv5b/infographics-10463361" target="_blank" rel="noopener">ดูแพ็กเกจงานอินโฟกราฟิก →</a></div>
-  </section>
 
-  <section id="presentation">
-    <div class="sec-head"><span class="no">05</span><h2>Company Profile / Pitch Deck — ให้ตัวเลขของคุณเล่าเรื่องได้</h2></div>
-    <p class="sec-desc">เอกสารธุรกิจที่ข้อมูลเยอะมักจบที่สไลด์อ่านไม่รู้เรื่อง
-       เราออกแบบกราฟและไดอะแกรมใหม่ให้อ่านจบเร็ว เหมาะกับงานยื่นลูกค้า ยื่นแบงก์ และพรีเซนต์ผู้บริหาร</p>
-    <div class="grid cols2">
-      <a class="card wide" href="assets/set1_siam_metalworks.png" target="_blank"><img src="assets/set1_siam_metalworks.png" alt="Company profile โรงงานโลหะ" loading="lazy"><div class="cap">Company Profile — โรงงานอุตสาหกรรม</div></a>
-      <a class="card wide" href="assets/set3_pitchdeck.png" target="_blank"><img src="assets/set3_pitchdeck.png" alt="Pitch deck" loading="lazy"><div class="cap">Pitch Deck — ตารางเทียบคู่แข่ง</div></a>
-      <a class="card wide" href="assets/set2_clinic.png" target="_blank"><img src="assets/set2_clinic.png" alt="โปรไฟล์คลินิก" loading="lazy"><div class="cap">โปรไฟล์ธุรกิจบริการ — คลินิก</div></a>
-      <a class="card wide" href="assets/set4_fnb.png" target="_blank"><img src="assets/set4_fnb.png" alt="สไลด์ธุรกิจอาหาร" loading="lazy"><div class="cap">กราฟการเติบโต — ธุรกิจอาหาร</div></a>
-    </div>
-    <div class="sec-cta"><a class="btn btn-ghost" href="https://fastwork.co/user/709jqv5b/presentation-32208593" target="_blank" rel="noopener">ดูแพ็กเกจงาน Presentation →</a></div>
-  </section>
 
-  <section id="moodboard">
-    <div class="sec-head"><span class="no">06</span><h2>Mood Board / Design Direction</h2></div>
-    <p class="sec-desc">บอร์ดกำหนดทิศทางดีไซน์ก่อนเริ่มโปรดักชัน — สวอตช์สี ฟอนต์ เท็กซ์เจอร์ และอารมณ์ภาพ
-       คลิกเพื่อเปิดดูบอร์ดจริงแบบเต็มหน้า</p>
-    <div class="mood">
-      <a href="https://claude.ai/code/artifact/896bef5f-24bf-412a-9e7c-519f7307528f" target="_blank" rel="noopener">
-        <div class="sw"><i style="background:#d4a017"></i><i style="background:#c1440e"></i><i style="background:#708238"></i><i style="background:#2e8b8b"></i></div>
-        <h3>Mid-Century Modern</h3><p>design reference board · ลาย atomic starburst</p>
-      </a>
-      <a href="https://claude.ai/code/artifact/26a755a5-2d8b-4660-bfc7-5dcfdd4e6d53" target="_blank" rel="noopener">
-        <div class="sw"><i style="background:#3a3f47"></i><i style="background:#19b6c9"></i><i style="background:#d9c18a"></i><i style="background:#12151a"></i></div>
-        <h3>Showman Engineer</h3><p>design reference board · HUD + ลายวงจร</p>
-      </a>
-      <a href="https://claude.ai/code/artifact/80817e1d-dc30-4953-9806-f36e97863781" target="_blank" rel="noopener">
-        <div class="sw"><i style="background:#e8e6e1"></i><i style="background:#1f6f8b"></i><i style="background:#5b6670"></i><i style="background:#708238"></i></div>
-        <h3>Athena</h3><p>design reference board · หินอ่อน + ลาย meander</p>
-      </a>
-      <a href="https://claude.ai/code/artifact/718ddc78-4b16-40a2-8fa8-8d22cf64fb4a" target="_blank" rel="noopener">
-        <div class="sw"><i style="background:#5b2a86"></i><i style="background:#a4161a"></i><i style="background:#d4af37"></i><i style="background:#1b1b1e"></i></div>
-        <h3>Julius Caesar</h3><p>design reference board · ลอเรล + อินทรี</p>
-      </a>
-      <a href="https://claude.ai/code/artifact/f0db7fd8-f31f-4e15-8e82-a06a6a14879e" target="_blank" rel="noopener">
-        <div class="sw"><i style="background:#111"></i><i style="background:#333"></i><i style="background:#e8e6e1"></i><i style="background:#a4161a"></i></div>
-        <h3>Caesar Collage</h3><p>inspiration collage · 13 ภาพซ้อนเล่าอารมณ์</p>
-      </a>
-    </div>
-  </section>
 
-  <p class="note">ตัวอย่างผลงานในหน้านี้ผลิตขึ้นเองทั้งหมดเพื่อการสาธิต ชื่อแบรนด์ที่ปรากฏเป็นแบรนด์สมมติ ไม่ใช่งานของลูกค้ารายใด ยกเว้นที่ระบุไว้เป็นอย่างอื่น</p>
-
+<section><div class="wrap">
+  <div class="end">
+    <div><h2>Have a product that needs a short video?</h2><p>Send your app link, who it is for and where the video will run. All messages and payments stay on Upwork.</p></div>
+    <a class="btn" href="https://www.upwork.com/freelancers/~012332817fe4c80f80" target="_blank" rel="noopener">Hire on Upwork</a>
+  </div>
+</div></section>
 </main>
 
-<footer>
-  <div class="logo">SANI<span style="color:var(--accent)">FU</span></div>
-  <p>รับงานและชำระเงินผ่าน Fastwork เท่านั้น — เงินของคุณได้รับความคุ้มครองจนกว่างานจะเสร็จ</p>
-  <div class="actions"><a class="btn btn-primary" href="https://fastwork.co/user/709jqv5b" target="_blank" rel="noopener">ดูบริการทั้งหมดบน Fastwork</a></div>
-</footer>
+<footer><div class="wrap">
+  <p>Every brand on this page (stopwell, INVORA, TUEN Roasting, SAAI, Evening Room) is fictional, made as a sample to show the work. Client projects are not shown.</p>
+  <p>The Salem and Croesus excerpts come from long-form YouTube history episodes I produced. They use AI narration and some AI-generated shots alongside public-domain archive material.</p>
+  <p>Paper-cut short: archive images from Wellcome Collection (CC BY 4.0), Houghton Library and British Museum (public domain); paper textures from ambientCG (CC0). Edits use licensed stock footage and music.</p>
+</div></footer>
 
+<dialog id="lb"><button class="x" type="button">Close ✕</button><div id="lbBody"></div><p class="cap" id="lbCap"></p></dialog>
+
+<script>
+(function(){
+  // filters
+  var btns=[].slice.call(document.querySelectorAll('.filters button'));
+  var cards=[].slice.call(document.querySelectorAll('.grid .card'));
+  function apply(f){
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===f)});
+    cards.forEach(function(c){c.classList.toggle('hide',f!=='all'&&c.dataset.cat!==f)});
+    check();
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.f);history.replaceState(null,'',b.dataset.f==='all'?'#work':'#'+b.dataset.f)})});
+
+  // play muted previews only while visible, at most 3 at once
+  var vids=[].slice.call(document.querySelectorAll('video[data-src]'));
+  var seen=new Map();
+  function check(){
+    var on=vids.filter(function(v){return seen.get(v)&&v.offsetParent!==null}).slice(0,3);
+    vids.forEach(function(v){
+      if(on.indexOf(v)>-1){
+        if(!v.src){v.src=v.dataset.src}
+        var p=v.play(); if(p&&p.catch)p.catch(function(){});
+        v.style.opacity=1;
+      }else if(!v.paused){v.pause()}
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){seen.set(e.target,e.isIntersecting)});check()},{threshold:.35});
+    vids.forEach(function(v){io.observe(v)});
+  }
+  // hide poster img once a card video has frames
+  vids.forEach(function(v){v.addEventListener('playing',function(){var i=v.parentNode.querySelector('img');if(i)i.style.visibility='hidden'})});
+
+  // lightbox
+  var lb=document.getElementById('lb'),body=document.getElementById('lbBody'),cap=document.getElementById('lbCap');
+  function open(html,c){body.innerHTML=html;cap.textContent=c||'';if(lb.showModal)lb.showModal();else lb.setAttribute('open','')}
+  function close(){body.innerHTML='';lb.close?lb.close():lb.removeAttribute('open')}
+  lb.querySelector('.x').addEventListener('click',close);
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  lb.addEventListener('close',function(){body.innerHTML=''});
+  document.querySelectorAll('.media[data-video]').forEach(function(m){
+    m.addEventListener('click',function(){open('<video src="'+m.dataset.video+'" controls autoplay playsinline></video>',m.dataset.cap)});
+  });
+  document.querySelectorAll('.mock img,.thumbs img').forEach(function(i){
+    i.addEventListener('click',function(){open('<img src="'+i.src+'" alt="">',i.alt)});
+  });
+
+  var h=location.hash.slice(1);
+  apply(['explainer','ad','edit','design'].indexOf(h)>-1?h:'all');
+})();
+</script>
 </body>
 </html>
