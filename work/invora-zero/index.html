@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INVORA · Kinetic type ad</title>
+<meta name="description" content="A kinetic type ad for a fictional invoicing app. You scroll a $4,280 debt down to zero, one late client at a time, and then you fall through the zero.">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="preload" href="assets/p800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+@font-face{font-family:Pop;src:url(assets/p400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Pop;src:url(assets/p500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Pop;src:url(assets/p800.woff2) format("woff2");font-weight:800;font-display:swap}
+:root{
+  --sc-canvas:#101a33;--sc-surface:#16213f;--sc-ink:#f4f1ea;--sc-ink-soft:#b5bac8;
+  --sc-accent:#21c07a;--sc-accent-ink:#101a33;
+  --sc-font-display:Pop,system-ui,sans-serif;--sc-font-text:Pop,system-ui,sans-serif;
+  --edge:clamp(16px,2.2vw,32px);--z-canvas:0;
+}
+::selection{background:#21c07a;color:#101a33}
+#ledger{position:fixed;inset:0;z-index:var(--z-canvas);pointer-events:none}
+#ledger canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+main{position:relative;z-index:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Links are type, not a bar */
+.links{position:fixed;inset:0 0 auto;z-index:20;display:flex;justify-content:space-between;padding:clamp(12px,1.5vw,20px) var(--edge);font-size:14px;line-height:1.3;font-weight:500;color:var(--paper,#f4f1ea);pointer-events:none;transition:color 160ms var(--sc-ease-out)}
+.links a{pointer-events:auto;color:inherit;text-underline-offset:.25em;text-decoration-thickness:1px;padding:6px 0}
+.links a:focus-visible,.close a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+/* 1 Dread */
+.hero-line{position:absolute;left:var(--edge);top:clamp(64px,13vh,120px);font-size:clamp(16px,1.3vw,20px);line-height:1.35;font-weight:500;margin:0;max-width:18em}
+
+/* 2 Embarrassment */
+.chase{padding-block:0 clamp(40px,8vh,80px);overflow:clip}
+.chase p{margin:0;font-weight:500;color:var(--sc-ink);text-wrap:balance}
+.chase .c1{font-size:18px;line-height:1.5;margin-left:var(--edge);max-width:24em;padding-top:6vh}
+.chase .c2{font-size:clamp(22px,2.2vw,32px);line-height:1.25;margin:clamp(50px,11vh,110px) var(--edge) 0 auto;width:min(82vw,16em);text-align:right}
+.chase .c3{font-size:clamp(32px,4.6vw,72px);line-height:1.08;letter-spacing:-.02em;font-weight:800;margin:clamp(50px,11vh,110px) 0 0 clamp(16px,14vw,220px);max-width:11em}
+.chase .c4{font-size:clamp(44px,9vw,150px);line-height:1;letter-spacing:-.03em;font-weight:800;margin:clamp(60px,13vh,130px) var(--edge) 0;text-align:right}
+.chase .c5{font-size:27.4vw;line-height:.86;letter-spacing:-.045em;font-weight:800;margin:clamp(70px,16vh,150px) 0 0;text-align:center;white-space:nowrap}
+.chase .c6{font-size:16px;line-height:1.4;margin:clamp(70px,16vh,150px) var(--edge) 0;text-align:center;color:var(--sc-ink-soft)}
+
+/* 3 Surprise */
+.turn{height:100%;display:flex;flex-direction:column;justify-content:center}
+.word{margin:0;font:800 23.6vw/1 Pop,sans-serif;letter-spacing:-.04em;color:var(--sc-ink);text-align:center;padding:.04em 0 .1em;white-space:nowrap}
+.turn .sends{font:800 clamp(30px,5.8vw,96px)/1.05 Pop,sans-serif;letter-spacing:-.025em;text-align:right;margin:0 var(--edge)}
+
+/* 4 Satisfaction */
+.receipt{position:absolute;left:var(--edge);top:clamp(64px,12vh,110px);margin:0;padding:0;list-style:none;font-size:clamp(14px,1.4vw,22px);line-height:1.35;font-weight:500;font-variant-numeric:tabular-nums;width:min(29em,calc(100vw - 2*var(--edge)))}
+.receipt li{display:grid;grid-template-columns:4.1em 1fr auto;gap:.6em;padding:.34em 0;border-top:1px solid color-mix(in oklab,var(--sc-ink) 22%,transparent)}
+.receipt li>:last-child{color:#7fe3b4}
+.receipt .head{display:block;border:0;padding:0 0 .6em;font-weight:500;color:var(--sc-ink-soft)}
+
+.now{position:absolute;right:var(--edge);top:clamp(64px,12vh,110px);margin:0;width:min(44vw,17em);text-align:right;font:800 clamp(22px,2.7vw,42px)/1.12 Pop,sans-serif;letter-spacing:-.02em;color:var(--sc-ink);opacity:0;text-wrap:balance}
+.now span{display:block;font-weight:500;font-size:.56em;letter-spacing:-.005em;line-height:1.3;margin-bottom:.35em;color:var(--sc-ink-soft)}
+
+/* 5 Silence */
+#a4{margin-top:-55vh}#a6{margin-top:-85vh}.quiet{height:40vh;position:relative}
+.quiet p{position:fixed;left:0;right:0;bottom:5.5vh;z-index:2;opacity:0;margin:0;text-align:center;font-size:16px;line-height:1.4;font-weight:500;color:var(--sc-ink)}
+
+/* 6 Awe */
+.wall{position:absolute;left:0;right:0;top:50%;margin:0;text-align:center;color:#101a33;font:800 min(14vw,27vh)/1 Pop,sans-serif;letter-spacing:-.035em;white-space:nowrap;transform-origin:50% 50%;opacity:0}
+.wall-sub{position:absolute;left:0;right:0;bottom:clamp(40px,10vh,90px);margin:0;text-align:center;color:#101a33;font-size:clamp(16px,1.4vw,22px);font-weight:500}
+
+/* 7 Calm */
+.close{position:relative;background:#f4f1ea;color:#101a33;padding:clamp(56px,12vh,130px) var(--edge) clamp(36px,6vh,64px);font-size:clamp(15px,1.15vw,17px);line-height:1.55}
+.close .in{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start;max-width:1320px;margin:0 auto}
+.close video{width:100%;display:block;background:#101a33;aspect-ratio:16/9}
+.close h2{font:800 clamp(26px,2.5vw,38px)/1.1 Pop,sans-serif;letter-spacing:-.02em;margin:0 0 .7em}
+.close p{margin:0 0 1em;max-width:34em;color:#101a33}
+.close dl{margin:0 0 1em;max-width:34em}
+.close dl div{display:grid;grid-template-columns:5.6em 1fr;gap:.6em;padding:.45em 0;border-top:1px solid rgba(16,26,51,.32)}
+.close dt{font-weight:500}.close dd{margin:0}
+.close a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:2px;font-weight:800;font-size:clamp(18px,1.5vw,22px);display:inline-block;padding:6px 0;margin-right:1.2em}.close a+a{font-weight:500;font-size:inherit;text-decoration-thickness:1px}
+
+@media (max-aspect-ratio:1/1){
+  .close .in{grid-template-columns:1fr}
+  .chase .c5{font-size:27.4vw}
+  .receipt{width:47vw;font-size:11.5px}
+  .now{left:var(--edge);right:auto;top:auto;bottom:11vh;width:45vw;text-align:left;font-size:21px}
+  .receipt li{grid-template-columns:1fr auto;row-gap:0}
+  .receipt li>:first-child{display:none}
+  .turn .sends{text-align:center}
+}
+@media (prefers-reduced-motion:reduce){.links{transition:none}}
+</style>
+</head>
+<body>
+<div id="ledger" aria-hidden="true" data-sc-verify-state=""><canvas id="c"></canvas></div>
+<div class="sc-grain" aria-hidden="true"></div>
+<nav class="links" id="links" aria-label="Portfolio"><a href="../../">All work</a><a href="https://www.upwork.com/freelancers/~012332817fe4c80f80">Hire on Upwork</a></nav>
+
+<main>
+  <!-- 1 DREAD -->
+  <section id="a1" data-sc-act="pin" data-sc-span="1.45" data-sc-drift="#101a33">
+    <div data-sc-stage>
+      <h1 class="sr">$4,280 overdue this month</h1>
+      <p class="hero-line" data-sc-cue="0 0.82 0 0.2">Overdue this month.</p>
+    </div>
+  </section>
+
+  <!-- 2 EMBARRASSMENT -->
+  <section id="a2" class="chase" data-sc-act="flow" data-sc-drift="#0c1329">
+    <p class="c1" data-sc-in>Hi! Just a gentle reminder about invoice 1048.</p>
+    <p class="c2" data-sc-in>Hope you had a great weekend. Any news on this one?</p>
+    <p class="c3" data-sc-in>Following up again. Sorry to bother you.</p>
+    <p class="c4" data-sc-in>Did you get my last email?</p>
+    <p class="c5" data-sc-in>Hello?</p>
+    <p class="c6" data-sc-in>41 days late.</p>
+  </section>
+
+  <!-- 3 SURPRISE -->
+  <section id="a3" data-sc-act="pin" data-sc-span="2" data-sc-drift="#101a33">
+    <div data-sc-stage>
+      <div class="turn">
+        <div data-sc-reveal="left" data-sc-reveal-at="0.02 0.46"><h2 class="word">INVORA</h2></div>
+        <p class="sends" data-sc-cue="0.42 1 0.14 0.06" data-sc-kinetic="words">sends the reminders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 SATISFACTION -->
+  <section id="a4" data-sc-act="pin" data-sc-span="3.3" data-sc-drift="#101a33">
+    <div data-sc-stage>
+      <ol class="receipt" id="receipt" aria-label="Seven reminders, seven payments">
+        <li class="head" data-sc-rise="0" data-sc-cue="0.05 0.92 0.03 0.03">Reminder sent, invoice paid</li>
+      </ol>
+      <p class="now" id="now" aria-hidden="true"></p>
+    </div>
+  </section>
+
+  <!-- 5 SILENCE -->
+  <section id="a5" class="quiet" data-sc-act="flow" data-sc-drift="#101a33">
+    <p id="quietline">Seven invoices. Not one awkward email from you.</p>
+  </section>
+
+  <!-- 6 AWE: the peak, largest span on the page -->
+  <section id="a6" data-sc-act="pin" data-sc-span="3.9" data-sc-drift="#101a33">
+    <div data-sc-stage>
+      <h2 class="wall" id="wall">You get paid.</h2>
+      <p class="wall-sub" data-sc-cue="0.8 1 0.06 0.02">INVORA. Get paid on time.</p>
+    </div>
+  </section>
+
+  <!-- 7 CALM -->
+  <section id="a7" class="close" data-sc-act="flow">
+    <div class="in">
+      <video src="assets/ad.mp4" poster="assets/ad_poster.jpg" controls playsinline preload="none" aria-label="The 13 second INVORA ad"></video>
+      <div data-sc-in>
+        <h2>The ad behind this page.</h2>
+        <p>A 13-second pre-roll told with type alone. Each reminder pays one invoice, the balance drops by that amount and a rising tick plays, until it lands on $0.</p>
+        <dl>
+          <div><dt>Format</dt><dd>13 s, 1920×1080, also cut as a 12-file pack for 9:16, 1:1 and 16:9</dd></div>
+          <div><dt>My part</dt><dd>Concept, kinetic typography, animation, sound design and this page</dd></div>
+          <div><dt>Made with</dt><dd>Built in code, so the brand, colours and call to action change quickly. No AI images in this piece.</dd></div>
+        </dl>
+        <p>INVORA and every client named here are fictional, made as a design sample.</p>
+        <a href="https://www.upwork.com/freelancers/~012332817fe4c80f80">Hire on Upwork</a><a href="../../">All work</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+(async function(){
+const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.getElementById(s);
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const seg=(p,a,b)=>clamp((p-a)/(b-a));
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+const out=t=>1-Math.pow(1-t,3);
+
+// --- the scripted scenario. Same figures as the ad. ---
+const INV=[['9:02','Chan Hardware',980],['9:04','Baan Cafe',450],['9:05','Riverside Dental',720],['9:07','Lumen Studio',310],['9:08','Northline Logistics',860],['9:10','Green Fork Kitchen',540],['9:11','Kanda Print Co.',420]];
+const TOTAL=INV.reduce((s,v)=>s+v[2],0);
+const money=n=>'$'+n.toLocaleString('en-US');
+// two slow, then a flurry
+const DUR=[.19,.16,.095,.08,.065,.06,.055],START=.1;
+const STEPS=[];{let at=START;DUR.forEach(d=>{STEPS.push([at,at+d]);at+=d})}
+const END=STEPS[STEPS.length-1][1];
+
+// receipt rows (real text, driven by engine cues)
+const ol=$('receipt');
+INV.forEach((v,i)=>{const[a,b]=STEPS[i],li=document.createElement('li');
+  li.setAttribute('data-sc-cue',`${(a+(b-a)*.25).toFixed(3)} 0.92 0.015 0.03`);li.setAttribute('data-sc-rise','0');
+  li.innerHTML=`<span>${v[0]} AM</span><span>${v[1]}</span><span>−${money(v[2])}</span>`;ol.appendChild(li)});
+
+// --- glyphs ---
+const GJ=await (await fetch('glyphs.json')).json();
+const P={};for(const k of '$,0123456789')P[k]=new Path2D(GJ[k].d);
+const ZO=new Path2D(GJ['0'].outer);
+const Z=GJ._zero,ZCX=(Z.x0+Z.x1)/2,ZCY=(Z.y0+Z.y1)/2,ZHW=(Z.x1-Z.x0)/2,ZHH=(Z.y1-Z.y0)/2;
+const CELL=ch=>ch==='$'?.66:ch===','?.31:.645;
+const emOf=s=>{let e=0;for(const ch of s)e+=CELL(ch);return e};
+const CAP=.75;
+
+const hex=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16));
+const mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+const css=c=>`rgb(${c[0]|0},${c[1]|0},${c[2]|0})`;
+const NAVY=hex('#101a33'),DEEP=hex('#0c1329'),CORAL=hex('#e8543f'),GREEN=hex('#21c07a'),RIM=hex('#a93a2e'),EMBER=hex('#6f2029'),DARK=hex('#1d1124'),MOSS=hex('#14513f');
+// wall shade: z 0 at the rim, 1 at the far end. It goes dark, then catches the light from the far wall.
+function wall(z){
+  if(z<.28)return mix(RIM,EMBER,z/.28);
+  if(z<.62)return mix(EMBER,DARK,(z-.28)/.34);
+  if(z<.9)return mix(DARK,MOSS,(z-.62)/.28);
+  return mix(MOSS,GREEN,(z-.9)/.1);
+}
+
+const cv=$('c'),ctx=cv.getContext('2d',{alpha:true}),holder=$('ledger'),links=$('links'),wallEl=$('wall');
+let W=0,H=0,DPR=1,acts={},dirty=true,portrait=false,wallFs=100;
+const mouse={x:0,y:0,tx:0,ty:0};
+
+function measure(){
+  W=innerWidth;H=innerHeight;DPR=Math.min(devicePixelRatio||1,2);
+  cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);portrait=W<H;
+  const y=scrollY;
+  ['a1','a2','a3','a4','a5','a6','a7'].forEach(id=>{const r=$(id).getBoundingClientRect();acts[id]={top:r.top+y,h:r.height}});
+  wallFs=parseFloat(getComputedStyle(wallEl).fontSize);
+  dirty=true;
+}
+const pinP=id=>{const a=acts[id];return clamp((scrollY-a.top)/Math.max(1,a.h-H))};
+const flowP=id=>{const a=acts[id];return clamp((scrollY+H-a.top)/(a.h+H))};
+
+// amount at a given progress of act 4
+function amount(p){let v=TOTAL;STEPS.forEach(([a,b],i)=>{const d=b-a;v-=INV[i][2]*ease(seg(p,a+d*.3,a+d*.72))});return Math.max(0,Math.round(v))}
+// width of the string, interpolated across each payment so the size never jumps
+function emAt(p,n){let em=emOf(money(n));let left=TOTAL;
+  STEPS.forEach(([a,b],i)=>{const d=b-a,pre=left,post=left-INV[i][2];left=post;
+    if(p>=a+d*.3&&p<=a+d*.72)em=lerp(emOf(money(pre)),emOf(money(post)),ease(seg(p,a+d*.3,a+d*.72)))});
+  return em}
+function hit(p){let k=0;STEPS.forEach(([a,b])=>{const d=b-a,t=seg(p,a+d*.3,a+d*.5);if(t>0&&t<1)k=Math.max(k,Math.sin(t*Math.PI))});return k}
+
+// how big the string may be. On a phone a long number stands up the side of the screen.
+function fit(em,up,room){const long=up?H*.875:W*.965;const short=up?W:H;return Math.min(long/em,short*(up?.39:(room||.66))/CAP)}
+
+function draw(text,fs,cx,cy,angle,D,vx,vy,tone,layers,only0,slide){
+  // tone: 1 = full colour, lower sinks it into the ground
+  const em=emOf(text),cos=Math.cos(angle),sin=Math.sin(angle);
+  const ks=[];for(let i=layers;i>=0;i--){const z=layers?i/layers:0;ks.push(z)}
+  // far wall first, so the counter of the 0 opens on light
+  for(const z of ks){
+    const k=1/(1+D*z),f=fs*k,x=vx+(cx-vx)*k,y=vy+(cy-vy)*k;
+    const col=z===0?mix(tone.g,CORAL,tone.a):mix(tone.g,wall(z*(tone.depth||1)),tone.a);
+    ctx.fillStyle=css(col);
+    let pen=-em/2;
+    for(const ch of text){
+      const w=CELL(ch),adv=GJ[ch].w;
+      const skip=only0&&ch!=='0'||(ch==='$'&&slide>0&&z>0);
+      if(!skip){
+        const ox=(pen+(w-adv)/2)-(ch==='$'?slide:0),oy=CAP*.5;
+        ctx.setTransform(DPR*f*cos,DPR*f*sin,-DPR*f*sin,DPR*f*cos,DPR*(x+(ox*cos-oy*sin)*f),DPR*(y+(ox*sin+oy*cos)*f));
+        ctx.fill(P[ch]);
+      }
+      pen+=w;
+    }
+  }
+}
+
+let sigLast='',lastNow=-2;
+function render(){
+  dirty=false;
+  mouse.x+=(mouse.tx-mouse.x)*.08;mouse.y+=(mouse.ty-mouse.y)*.08;
+  const p1=pinP('a1'),p3=pinP('a3'),p4=pinP('a4'),p6=pinP('a6'),f2=flowP('a2');
+  const y=scrollY;
+  const inA4=y>=acts.a4.top-H*.5,afterA4=y>=acts.a4.top+acts.a4.h-H;
+
+  const n=amount(p4),text=money(n),em=emAt(p4,n);
+  const landed=n===0&&afterA4;
+  // phone: stands up the side while the number is long, lies flat for the short ones
+  const upAmt=portrait?ease(seg(em,1.31,2.58)):0;
+  const angle=-Math.PI/2*upAmt;
+  const settle=ease(seg(p4,.955,1));
+  const fsFit=lerp(lerp(fit(em,false,.36),fit(em,false,.68),settle),fit(em,true),upAmt);
+  // resting place: low on the frame while long, centred at zero
+  const rest=()=>{
+    const cxFlat=W/2,cyFlat=lerp(H-(fsFit*CAP*.5)-fsFit*.12-H*.025,H*.5,settle);
+    const cxUp=W-(fsFit*CAP*.5)-W*.05,cyUp=H/2+H*.045;
+    return[lerp(cxFlat,cxUp,upAmt),lerp(cyFlat,cyUp,upAmt)]};
+  const[rx,ry]=rest();
+
+  // Dread: looms toward the centre and sinks into the ground as the emails start
+  const big=fsFit*(portrait?1.5:1.95);
+  const heroT=REDUCE?0:ease(seg(p1,.12,1));
+  let fs,cx,cy,a=1,D=.05;
+  const baseStart=fit(emOf(money(TOTAL)),portrait);
+  const startUp=portrait?1:0;
+  if(!inA4||p4<START){
+    const fsH=lerp(baseStart,baseStart*(portrait?1.5:1.95),heroT);
+    const drift=seg(y,acts.a2.top-H,acts.a3.top+acts.a3.h-H);
+    const fs0=fsH*(1+drift*.16);
+    const cy0=portrait?H/2+H*.045:H-(baseStart*CAP*.5)-baseStart*.12-H*.025;
+    const cx0=portrait?W-(baseStart*CAP*.5)-W*.05:W/2;
+    const cxh=lerp(cx0,W/2,heroT),cyh=lerp(cy0,H/2,heroT);
+    const sink=seg(p1,.3,1);
+    const back=ease(seg(p4,.02,START));
+    fs=lerp(fs0,fsFit,back);cx=lerp(cxh,rx,back);cy=lerp(cyh,ry,back);
+    a=lerp(lerp(1,.11,sink),1,back);
+    D=lerp(lerp(.05,.14,heroT),.05,back);
+  }else{
+    fs=fsFit;cx=rx;cy=ry;
+    const h=REDUCE?0:hit(p4);
+    D=.05+h*.1;cy+=h*fs*.018;
+  }
+
+  // Awe: through the zero
+  const t=seg(p6,.03,.72);
+  const diving=t>0;
+  const kbEnd=1/(1+1.5);
+  const cover=Math.hypot(W/2/ZHW,H/2/ZHH);
+  const fsEnd=cover/kbEnd*1.04;
+  let vx=W/2+mouse.x*W*.07,vy=H*.32+mouse.y*H*.05;
+  let layers=portrait?10:14,only0=false,depthTone=.32;
+  let wallKb=1;
+  if(landed){
+    // stands still, then gains depth
+    const zcx=(emOf('$')+(CELL('0')-GJ['0'].w)/2+ZCX)-emOf(text)/2;
+    const zcy=ZCY+CAP*.5;
+    const e=ease(t);
+    const log0=Math.log(fsFit),log1=Math.log(fsEnd);
+    const fsD=Math.exp(lerp(log0,log1,e*e*(.35+.65*e)));
+    D=lerp(.05,1.5,ease(seg(t,.0,.42)));
+    // the counter's centre glides to the middle of the screen and stays there
+    const ax0=rx+zcx*fsFit,ay0=ry+zcy*fsFit;
+    const ax=lerp(ax0,W/2,ease(seg(t,0,.3))),ay=lerp(ay0,H/2,ease(seg(t,0,.3)));
+    fs=fsD;cx=ax-zcx*fs;cy=ay-zcy*fs;
+    vx=lerp(W/2+mouse.x*W*.07,ax,ease(seg(t,0,.16)));
+    vy=lerp(H*.32+mouse.y*H*.05,ay,ease(seg(t,0,.16)));
+    if(diving){layers=portrait?34:58;depthTone=lerp(.32,1,ease(seg(t,0,.3)));only0=fs*.66>W*2}
+    wallKb=1/(1+D);
+    // far wall lights the counter once it has depth
+    window.__far={ax,ay};
+    if(REDUCE){fs=fsFit;cx=rx;cy=ry;D=.05;layers=14;wallKb=fsEnd*kbEnd/fsFit;window.__far={ax:W/2,ay:H/2}}
+  }
+
+  // paint
+  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);
+  const full=landed&&(REDUCE?t>=.5:t>=1);
+  if(full){ctx.fillStyle=css(GREEN);ctx.fillRect(0,0,cv.width,cv.height)}
+  else{
+    if(landed&&D>.08&&!REDUCE){
+      // the far wall: a solid zero in green at the far plane
+      const em0=emOf(text),k=1/(1+D),f=fs*k,x=vx+(cx-vx)*k,y2=vy+(cy-vy)*k;
+      const ox=emOf('$')+(CELL('0')-GJ['0'].w)/2-em0/2,oy=CAP*.5;
+      ctx.setTransform(DPR*f,0,0,DPR*f,DPR*(x+ox*f),DPR*(y2+oy*f));
+      ctx.fillStyle=css(GREEN);ctx.fill(ZO);
+    }
+    const ground=hexCanvas();
+    draw(text,fs,cx,cy,angle,D,vx,vy,{a,g:ground,depth:depthTone},layers,only0,landed&&!REDUCE?ease(seg(t,0,.4))*1.6:0);
+  }
+
+  // the line on the far wall, from the first frame of the dive
+  if(landed&&p6>0){
+    const fin=fsEnd*kbEnd,now=fs*wallKb;
+    const s=now/fin,ax=window.__far.ax,ay=window.__far.ay;
+    wallEl.style.opacity=REDUCE?(full?1:0):(t<=0||s*wallFs<6?0:1);
+    wallEl.style.transform=`translate3d(${(ax-W/2).toFixed(2)}px,${(ay-H/2).toFixed(2)}px,0) translateY(-50%) scale(${s.toFixed(5)})`;
+  }else{wallEl.style.opacity=0}
+
+  // the moment of each payment, said once, at reading size
+  let nowI=-1,nowO=0;
+  STEPS.forEach(([a,b],i)=>{if(p4>=a&&p4<b){nowI=i;const u=(p4-a)/(b-a);nowO=seg(u,.06,.2)*(1-seg(u,.93,1))}});
+  if(nowI!==lastNow){lastNow=nowI;if(nowI>=0)$('now').innerHTML=`<span>Reminder sent, ${INV[nowI][0]} AM</span>${INV[nowI][1]} paid ${money(INV[nowI][2])}.`}
+  $('now').style.opacity=nowO.toFixed(3);
+  const qIn=seg(y,acts.a5.top-H*.85,acts.a5.top-H*.65),qOut=seg(y,acts.a6.top-H*.22,acts.a6.top);
+  $('quietline').style.opacity=(qIn*(1-qOut)).toFixed(3);
+  // type colour of the links
+  const onGreen=(landed&&t>.78)||y>=acts.a7.top-40;
+  links.style.color=onGreen?'#101a33':'#f4f1ea';
+
+  // evidence for the harness: what actually painted
+  const sig=[text,Math.round(fs),Math.round(a*100),Math.round(D*100),full?1:0].join('|');
+  if(sig!==sigLast){holder.setAttribute('data-sc-verify-state',sig);sigLast=sig}
+  // authored holds
+  const hold=(y>=acts.a5.top-H&&y<acts.a6.top&&n===0)||(full&&p6<1)||p6>0&&p6<.03;
+  holder.setAttribute('data-sc-verify-hold',hold?'true':'false');
+}
+let lastG='';let gCache=NAVY;
+function hexCanvas(){const v=getComputedStyle(document.documentElement).getPropertyValue('--sc-canvas').trim();if(v===lastG)return gCache;lastG=v;
+  const m=v.match(/\d+(\.\d+)?/g);if(v[0]==='#')gCache=hex(v);else if(m)gCache=m.slice(0,3).map(Number);return gCache}
+
+let q=false;
+function tick(){q=false;render();if(Math.abs(mouse.tx-mouse.x)+Math.abs(mouse.ty-mouse.y)>.002)sched()}
+function sched(){if(q)return;q=true;requestAnimationFrame(tick)}
+addEventListener('scroll',sched,{passive:true});
+addEventListener('resize',()=>{measure();sched()});
+addEventListener('pageshow',sched);
+if(!REDUCE&&matchMedia('(hover:hover) and (pointer:fine)').matches)addEventListener('pointermove',e=>{mouse.tx=e.clientX/innerWidth-.5;mouse.ty=e.clientY/innerHeight-.5;sched()},{passive:true});
+
+if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+ScrollCraft.mount(document.body);
+measure();render();
+// section heights settle after mount
+requestAnimationFrame(()=>{measure();render()});
+})();
+</script>
+</body>
+</html>
